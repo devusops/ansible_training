@@ -1,0 +1,80 @@
+Installing Ansible
+
+Install Ansible on the control node or management server
+
+Download epel repository.
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+Install epel repository.
+yum install epel-release-latest-7.noarch.rpm
+
+Update epel repository
+yum update -y
+
+Install all individual packages inside the repository.
+yum install git python python-devel python-pip openssl ansible -y
+
+Verify Ansible installation
+ansible —version
+
+
+
+
+Configuring inventory 
+
+Add the public IP address of the servers which you would like to control
+vi /etc/ansible/hosts
+
+
+Example
+
+[webserver]
+ ansi01 ansible_host=54.176.23.152
+
+
+Check if the host is added
+
+# ansible --list-host all
+  hosts (2):
+    dbservers
+    54.176.23.152
+
+
+Configure control and host machine
+
+Create user provision on control and host machine and add to sudoers file
+
+useradd -m -s /bin/bash provision
+passwd provision
+
+echo  -e 'provision\tALL=(ALL)\tNOPASSWD:\tALL' > /etc/sudoers.d/provision
+
+Perform ssh configuration
+Add public key of control server 
+
+[provision@ip-172-31-12-5 ~]$ cd .ssh
+[provision@ip-172-31-12-5 .ssh]$ ls
+id_rsa  id_rsa.pub  known_hosts
+[provision@ip-172-31-12-5 .ssh]$ cat id_rsa.pub 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsBmc8FCvQG0bFdKwO8ElVHe60MR2BhxuSUXlUwA0QH2NPK07NHSA/OvgVdgGvaUBAL8TrAayvHUzfdVfoD3qn0uoqzmmv+nbw51yF36qyH1hl/DLMRQEyJhi3qy+VzI0bqubb9nF3pZTy9Xedev4HpEU6c3H1FXqEeO/usuEw5bjKITaODCKe4h1isdrLnS+zXEv1lkv3+Iz1a0XmY7lzRUP8WWiU3LRhtNfEPMifp3vdM+arGOwgkgB+VVXf3GFjaRugulGKFQN/Kauz88wqKA9m/+5tcRzPKKYwxg5QqwoX+HSl7kiHVvmPMvyZAnWU0zuCUpm2hF+7iEfP+3KX provision@ip-172-31-12-5.us-west-1.compute.internal
+
+[provision@ip-172-31-12-5 .ssh]$ vi authorized_keys
+
+
+
+
+[provision@ip-172-31-19-240 .ssh]$ ls
+authorized_keys  id_rsa  id_rsa.pub
+[provision@ip-172-31-19-240 .ssh]$ cat id_rsa.pub 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMx5buvRpqQyo9+2/5up5W6iqVF+mUXYu+6NIFAgtWkvRE52RouLL3pq+AUnxmqDLxGoEy0EkDBUNbVevZYdvUxWuSDG1j3
+hG7eHeUkvTkNnLSexzNBJeEDn2XvOZ3AkB3ZA6xgzyB1iupNiMBnBFqBPDR2kTe/N5nDez8pU7nhqJ1M4B88sgB1NG3+YsL/rzvcvPJTDOwXQb+OsyFo9xxx0my9Ss9j19pDt
+deoaTvF2N29hFjyAgh171HEf87CfYmYcEAc7dy7NVUYuiyUuG2lS5JQc8ZfNdoAE0vI7tVnK/9ChNR8vgvrJ36dRKtxBUxNjahkB/QcybYQ1Rkh95z provision@ip-172-3
+1-19-240.us-west-1.compute.internal
+[provision@ip-172-31-19-240 .ssh]$ chown provision:provision authorized_keys 
+[provision@ip-172-31-19-240 .ssh]$ chmod 600 authorized_keys 
+[provision@ip-172-31-19-240 .ssh]$ rpm -qa | grep htttp*
+[provision@ip-172-31-19-240 .ssh]$ rpm -qa | grep http*
+
+
+
+

@@ -1,6 +1,6 @@
 ---
   - name: Playbook
-    hosts: dbservers
+    hosts: ansi01
     become: yes
     become_user: root
     tasks:

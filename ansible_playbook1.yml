@@ -1,0 +1,8 @@
+---
+- name: file module demo
+  hosts: localhost
+- name: Touch the same file, but add/remove some permissions
+  ansible.builtin.file:
+    path: /etc/playbook1.conf
+    state: touch
+    mode: u+rw,g-wx,o-rwx

@@ -90,6 +90,23 @@ deoaTvF2N29hFjyAgh171HEf87CfYmYcEAc7dy7NVUYuiyUuG2lS5JQc8ZfNdoAE0vI7tVnK/9ChNR8v
 [provision@ip-172-31-19-240 .ssh]$ rpm -qa | grep htttp*
 [provision@ip-172-31-19-240 .ssh]$ rpm -qa | grep http*
 
+adhoc commands in ansible (please execute this from control server) 
+
+[devops@ip-172-31-13-171 ~]$ ansible webserver -a "df -h" --ask-pass
+SSH password: 
+[WARNING]: Platform linux on host 18.144.27.74 is using the discovered Python interpreter at /usr/bin/python, but future
+installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+18.144.27.74 | CHANGED | rc=0 >>
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        474M     0  474M   0% /dev
+tmpfs           483M     0  483M   0% /dev/shm
+tmpfs           483M  460K  482M   1% /run
+tmpfs           483M     0  483M   0% /sys/fs/cgroup
+/dev/xvda1      8.0G  1.8G  6.3G  23% /
+tmpfs            97M     0   97M   0% /run/user/1000
+tmpfs            97M     0   97M   0% /run/user/1001
+
 
 
 

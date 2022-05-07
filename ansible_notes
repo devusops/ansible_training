@@ -26,6 +26,8 @@ Add the public IP address of the servers which you would like to control
 vi /etc/ansible/hosts
 [webservers]
 18.144.27.74 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+or 
+18.144.27.74 ansible_ssh_common_args='-o StrictHostKeyChecking=no' ansible_ssh_user="provision" ansible_ssh_password="*****"
 
 [devops@ip-172-31-14-72 ~]$ ansible -m ping webservers --ask-pass
 SSH password: 
@@ -61,6 +63,8 @@ echo  -e 'provision\tALL=(ALL)\tNOPASSWD:\tALL' > /etc/sudoers.d/provision
 Perform ssh configuration
 Add public key of control server 
 
+check if the user is created
+cat /etc/passwd | grep devops
 
 ************************************************************************************************************************************************
 
